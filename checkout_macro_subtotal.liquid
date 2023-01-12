@@ -1,0 +1,36 @@
+<div class="item">
+  {% assign calories = 0 %}
+  {% assign fat = 0 %}
+  {% assign carbs = 0 %}
+  {% assign protein = 0 %}
+  {% assign sodium = 0 %}
+  {% assign sugar = 0 %}
+  {% for item in cart.items %}
+    {% assign calories = calories | plus: item.product.metafields.custom.calories %}
+    {% assign fat = fat | plus: item.product.metafields.custom.fat %}
+    {% assign carbs = carbs | plus: item.product.metafields.custom.carbs %}
+    {% assign protein = protein | plus: item.product.metafields.custom.protein %}
+    {% assign sodium = sodium | plus: item.product.metafields.custom.sodium %}
+    {% assign sugar = sugar | plus: item.product.metafields.custom.sugar %}
+  {% endfor %}
+
+  <h2>Nutrition Facts for your Order:
+  </h2>
+  <h3>{{ fat }}g of Total Fat
+  </h3>
+  {% assign result = fat | times: 9 %}
+  <p>With {{ result }} calories coming from fat</p>
+  <h3>{{ carbs }}g of Total Carbs
+  </h3>
+  {% assign result = carbs | times: 4 %}
+  <p>With {{ result }} calories coming from carbohydrates</p>
+  <h3>{{ protein }}g of Total Protein
+  </h3>
+  {% assign result = protein | times: 4 %}
+  <p>With {{ result }} calories coming from protein</p>
+  <h3>{{ sodium }}mg of Sodium
+  </h3>
+  <h3>{{ sugar }}g of Added Sugar
+  </h3>
+  <h3>{{ calories }} Total kcal</h1>
+</div>
