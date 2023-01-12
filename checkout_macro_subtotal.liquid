@@ -5,7 +5,9 @@
   {% assign protein = 0 %}
   {% assign sodium = 0 %}
   {% assign sugar = 0 %}
-  {% for item in cart.items %}
+
+    {% for item in cart.items %}
+    {% comment %} this segment of code retreives the unique macros of each item in cart and assigns it to the variables created above {% endcomment %}
     {% assign calories = calories | plus: item.product.metafields.custom.calories %}
     {% assign fat = fat | plus: item.product.metafields.custom.fat %}
     {% assign carbs = carbs | plus: item.product.metafields.custom.carbs %}
@@ -16,21 +18,27 @@
 
   <h2>Nutrition Facts for your Order:
   </h2>
+  {% comment %} the following segments prints out each subtotal for each macro including calculating the quantity of calories from the order comes from each macronutrient {% endcomment %}
   <h3>{{ fat }}g of Total Fat
   </h3>
   {% assign result = fat | times: 9 %}
   <p>With {{ result }} calories coming from fat</p>
+
   <h3>{{ carbs }}g of Total Carbs
   </h3>
   {% assign result = carbs | times: 4 %}
   <p>With {{ result }} calories coming from carbohydrates</p>
+
   <h3>{{ protein }}g of Total Protein
   </h3>
   {% assign result = protein | times: 4 %}
   <p>With {{ result }} calories coming from protein</p>
+
   <h3>{{ sodium }}mg of Sodium
   </h3>
+
   <h3>{{ sugar }}g of Added Sugar
   </h3>
+
   <h3>{{ calories }} Total kcal</h1>
 </div>
